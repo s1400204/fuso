@@ -1,30 +1,13 @@
-<html>
-    <head>
-        <title>それっぽいなにか</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">[ここにそれっぽいタイトルを挿入]</a></h1>
-        </div>
+{% extends 'fuso/base.html' %}
 
-{% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-
-        <div>
-            <p>開始：昨日</p>
-            <h2><a href="">不意に見上げた夜空には……</a></h2>
-            <p>曇天</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+<h1><a href="{% url 'michishio' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-        <div>
-            <p>公開日：いま</p>
-            <h2><a href="">あるある探検隊</a></h2>
-            <p>カップラあるのに箸がない</p>
-        </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
